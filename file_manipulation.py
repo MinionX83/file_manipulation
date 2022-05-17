@@ -1,3 +1,9 @@
+# Kevin Monell
+# CIS245
+# 5/17/2022
+# File manipulation program
+
+
 import os
 
 def main():
@@ -9,7 +15,7 @@ def main():
 
     #checking if the directory exists
     if os.path.isdir(directory):
-        #createing and opening the file to write
+        #creating and opening the file to write
         writeFile = open(os.path.join(directory,filename),'w')
         #writing the data by comma seperated
         writeFile.write(name+','+address+','+phone_number+'\n')
@@ -25,5 +31,20 @@ def main():
             print(line)
         readFile.close()
     else:
-        print("Sorry that directory does not exist...")
+        os.makedirs(directory)
+        writeFile = open(os.path.join(directory,filename),'w')
+        #writing the data by comma separated
+        writeFile.write(name+','+address+','+phone_number+'\n')
+
+        #close the file after writing is done
+        writeFile.close()
+
+        print("File contents:")
+
+        #reading the file for proof of storing
+        readFile = open(os.path.join(directory,filename),'r')
+        for line in readFile:
+            print(line)
+        readFile.close()    
 main()
+input("Press Enter key to exit")
